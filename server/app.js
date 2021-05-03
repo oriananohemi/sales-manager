@@ -1,11 +1,13 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const config = require("./config");
+const router = require("./network/routes");
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const app = express();
 
-app.listen(port, () => {
-  console.log(`Servidor corriendo en http://localhost:${port}`)
+app.use(express.json());
+app.use(express.urlencoded({extended : false}));
+router(app)
+
+app.listen(config.port, () => {
+  console.log(`La aplicacion esta escuchando en ${config.host}:${config.port}`)
 })
