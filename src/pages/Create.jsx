@@ -3,6 +3,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 import Items from '../components/Items';
 import { getMethods } from '../assets/services/getMethods';
+import { createOrder } from '../assets/services/apiConnections';
 
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -78,6 +79,14 @@ const Create = () => {
 
   const handleSudmit = (e) => {
     e.preventDefault()
+    createOrder(form).then(res => {
+      setTimeout(() => {
+        window.location="/"
+      }, 1000)
+    })
+    .catch((e) => {
+      console.error(e)
+    })
   }
   
   const handleArticleChange = (e) => {

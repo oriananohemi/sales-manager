@@ -14,13 +14,13 @@ const getItems = async () => {
     return data; 
   }
   
-  const createOrder = async ( data ) => {
+  const createOrder = async ( order ) => {
     
     const url = `${urlOrder}/create`;  
     const resp = await fetch(url, { 
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),      
+      body: JSON.stringify(order),      
     });
     const data = await resp.json();     
    
