@@ -8,7 +8,9 @@ import { createOrder } from '../assets/services/apiConnections';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -17,9 +19,8 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
   section: {
-    width: '100%',
-    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
+    width: '100%',
   },
   paper: {
     margin: "20px 0",
@@ -163,7 +164,17 @@ const Create = () => {
         {
           form.productList.length > 0 
             ? 
-            <List className={classes.section}>{form.productList.map((article) => (<Items key={article.id} article={article}/>))}</List> 
+            <List className={classes.section}>
+              <ListItem role={undefined} dense button>
+                <ListItemText primary="Nombre"/>
+                <ListItemText primary="Cantidad"/>
+                <ListItemText primary="Cantidad"/>
+              </ListItem>
+              {
+              form.productList.map((article) => 
+                (<Items key={article.id} article={article}/>)
+              )}
+            </List> 
             : 
             <h2>Agrega los articulos del envio</h2>
         }
