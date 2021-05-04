@@ -1,19 +1,9 @@
 const fetch = require('node-fetch');
 const config = require('../../config');
+
 const methods = {
   method: 'get',
   headers: { 'x-api-key': `${config.xApiKey}` }
-}
-
-const getMethods = () => {
-  return new Promise ((resolve, reject) => {
-    fetch(`${config.url}shipping-methods`, methods)
-    .then(response => response.json())
-    .catch(error => reject(error))
-    .then(data => {
-      resolve(data);
-    });
-  })
 }
 
 const getOffDays = () => {
@@ -39,7 +29,6 @@ const getMethodDetails = (shipping_method_id) => {
 }
 
 module.exports = {
-  getMethods,
   getOffDays,
   getMethodDetails
 };
