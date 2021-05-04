@@ -2,10 +2,9 @@ const express = require('express');
 const response = require("../../network/response");
 const controller = require("./controller")
 
-
 const router = express.Router()
 
-router.post('/api/create', (req,res) => {
+router.post('/create', (req,res) => {
     controller.createOrder(req.body.order)
     .then(() => {
       response.success(req, res, 'Nueva orden creada')
@@ -16,7 +15,7 @@ router.post('/api/create', (req,res) => {
   })
   
   
-  router.get('/api/getallorders', (req,res) => {
+  router.get('/', (req,res) => {
     controller.getAllOrders()
     .then((listOrder) => {
       response.success(req, res, listOrder)
@@ -27,8 +26,8 @@ router.post('/api/create', (req,res) => {
   })
   
   
-  router.get('/api/ordersdetails/:orderId', (req,res) => {
-    controller.getOrderDetails(req.params.orderId)
+  router.get('/details/:id', (req,res) => {
+    controller.getOrderDetails(req.params.id)
     .then((order) => {
       response.success(req, res, order)
     })
