@@ -3,6 +3,7 @@ import Router from './router/Router';
 import './App.css';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,6 +21,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Header/>
       <Router />
+      <Footer/>
     </ThemeProvider>
   );
 }
