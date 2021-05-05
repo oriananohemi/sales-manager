@@ -53,8 +53,16 @@ const List = () => {
     
     const rows = []
 
+    const createRows = (data) => {
+      data.map(element => {
+        const date = element.date
+        const order = element.order
+        rows.push({...order, date})
+      })
+    }
+
     useEffect(() => {
-      getOrders().then(order => {rows.concat(order)})
+      getOrders().then(data => createRows(data.body))
     })
 
     const handleChangePage = (event, newPage) => {
@@ -88,7 +96,7 @@ const List = () => {
                 <TableBody>
                     {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                     return (
-                        <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                        <TableRow hover role="checkbox" tabIndex={-1} key={row.orderNumber}>
                         {columns.map((column) => {
                             const value = row[column.id];
                             return (
