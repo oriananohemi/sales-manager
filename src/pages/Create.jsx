@@ -80,8 +80,8 @@ const Create = () => {
 
  const handleSudmit = async (e) => {
   e.preventDefault()
-  createOrder(form).then(res => {
-    console.log(res)
+  const order = {order:{...form}}
+  createOrder(order).then(res => {
     setTimeout(() => {
       window.location="/"
     }, 1000)
@@ -110,7 +110,7 @@ const Create = () => {
 
   return (
     <Container>
-      <Button variant="contained" color="primary">Volver</Button>
+      <Button variant="contained" color="primary"><a href="/">Volver</a></Button>
       <ValidatorForm onSubmit={handleSudmit}>
       <Paper className={classes.paper} variant="outlined" square>
         <h2>Datos del Envio:</h2>
