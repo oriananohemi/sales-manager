@@ -23,11 +23,6 @@ const Items = ({article}) => {
             <ListItemText primary={article.name}/>
             <ListItemText primary={article.qty}/>
             <ListItemText primary={article.weight}/>
-            <ListItemSecondaryAction>
-              <IconButton edge="end" aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
-            </ListItemSecondaryAction>
           </ListItem>
         </>
       );
