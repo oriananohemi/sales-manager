@@ -5,11 +5,12 @@ const controller = require("./controller")
 const router = express.Router()
 
 router.post('/create', (req,res) => {
-    controller.createOrder(req.body.order)
-    .then(() => {
-      response.success(req, res, 'Nueva orden creada')
+    controller.createOrder(req.body)
+    .then((ctx) => {
+      response.success(req, res, ctx, 200)
     })
     .catch((e) => {
+      console.error(e)
       response.error(req, res, 'Faltan datos', 500, e)
     })
   })

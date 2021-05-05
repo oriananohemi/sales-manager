@@ -21,7 +21,6 @@ const getOrders = async () => {
       body: JSON.stringify(order),      
     });
     const data = await resp.json();     
-   
     return data; 
   }
   
