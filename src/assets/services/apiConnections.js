@@ -1,6 +1,6 @@
-const urlOrder = 'http://localhost:3200/api/v1/order';
+const urlOrder = 'http://localhost:3200/order';
 
-const getItems = async () => {
+const getOrders = async () => {
     const resp = await fetch(`${urlOrder}/`, { method: 'get' });
     const data = await resp.json();     
    
@@ -15,9 +15,7 @@ const getItems = async () => {
   }
   
   const createOrder = async ( order ) => {
-    
-    const url = `${urlOrder}/create`;  
-    const resp = await fetch(url, { 
+    const resp = await fetch(`${urlOrder}/create`, { 
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(order),      
@@ -28,7 +26,7 @@ const getItems = async () => {
   }
   
   export {
-    getItems,
+    getOrders,
     createOrder,
     getOrderById
   }   
