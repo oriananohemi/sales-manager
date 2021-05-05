@@ -78,13 +78,14 @@ const Create = () => {
     setForm((prevState) => ({...prevState, productList: prevState.productList.concat(article) }))
   }
 
-  const handleSudmit = (e) => {
-    e.preventDefault()
-    createOrder(form).then(res => {
-      setTimeout(() => {
-        window.location="/"
-      }, 1000)
-    })
+ const handleSudmit = async (e) => {
+  e.preventDefault()
+  createOrder(form).then(res => {
+    console.log(res)
+    setTimeout(() => {
+      window.location="/"
+    }, 1000)
+  })
     .catch((e) => {
       console.error(e)
     })
@@ -114,7 +115,7 @@ const Create = () => {
       <Paper className={classes.paper} variant="outlined" square>
         <h2>Datos del Envio:</h2>
         <div className={classes.container}>
-        <TextValidator errorMessages={["El campo es requerido"]} value={form.sellStore}  type="text" label="Tienda" name="sellStore" onChange={handleFormChange} />
+        <TextValidator errorMessages={["El campo es requerido"]} value={form.sellStore}  validators={['required']}  type="text" label="Tienda" name="sellStore" onChange={handleFormChange} />
         <FormControl className={classes.formInput}>
         <InputLabel htmlFor="grouped-native-select">Metodo de envio</InputLabel>
         <Select
@@ -133,19 +134,19 @@ const Create = () => {
           }
         </Select>
         </FormControl>
-        <TextValidator errorMessages={["El campo es requerido"]} type="number" label="Numero de Orden" name="orderNumber" value={form.orderNumber}  onChange={handleFormChange} />
-        <TextValidator errorMessages={["El campo es requerido"]} type="text" label="Nombre del comprador" name="buyerFullName" value={form.buyerFullName}  onChange={handleFormChange} />
-        <TextValidator errorMessages={["El campo es requerido"]} type="email" label="Correo electronico" name="buyerEmail" value={form.buyerEmail} onChange={handleFormChange} />
-        <TextValidator errorMessages={["El campo es requerido"]} type="number" label="Numero de telefono" name="buyerPhoneNumber" value={form.buyerPhoneNumber} onChange={handleFormChange} />
+        <TextValidator errorMessages={["El campo es requerido"]} type="number" label="Numero de Orden" name="orderNumber" validators={['required']} value={form.orderNumber}  onChange={handleFormChange} />
+        <TextValidator errorMessages={["El campo es requerido"]} type="text" label="Nombre del comprador" name="buyerFullName" validators={['required']} value={form.buyerFullName}  onChange={handleFormChange} />
+        <TextValidator errorMessages={["El campo es requerido"]} type="email" validators={['required', 'isEmail']} label="Correo electronico" validators={['required']} name="buyerEmail" value={form.buyerEmail} onChange={handleFormChange} />
+        <TextValidator errorMessages={["El campo es requerido"]} type="number" label="Numero de telefono" name="buyerPhoneNumber" validators={['required']} value={form.buyerPhoneNumber} onChange={handleFormChange} />
         </div>
       </Paper>
         <Paper className={classes.paper}  variant="outlined" square>
           <h2>Direccion:</h2>
           <div className={classes.container}>
-          <TextValidator errorMessages={["El campo es requerido"]} type="text" label="Direccion" name="shippingAddress" value={form.shippingAddress} onChange={handleFormChange} />
-          <TextValidator errorMessages={["El campo es requerido"]} type="text" label="Ciudad" name="shippingCity" value={form.shippingCity} onChange={handleFormChange} />
-          <TextValidator errorMessages={["El campo es requerido"]} type="text" label="Region" name="shippingRegion" value={form.shippingRegion} onChange={handleFormChange} />
-          <TextValidator errorMessages={["El campo es requerido"]} type="text" label="Pais" name="shippingCountry" value={form.shippingCountry} onChange={handleFormChange} />
+          <TextValidator errorMessages={["El campo es requerido"]} type="text" label="Direccion" name="shippingAddress" validators={['required']} value={form.shippingAddress} onChange={handleFormChange} />
+          <TextValidator errorMessages={["El campo es requerido"]} type="text" label="Ciudad" name="shippingCity" validators={['required']} value={form.shippingCity} onChange={handleFormChange} />
+          <TextValidator errorMessages={["El campo es requerido"]} type="text" label="Region" name="shippingRegion" validators={['required']} value={form.shippingRegion} onChange={handleFormChange} />
+          <TextValidator errorMessages={["El campo es requerido"]} type="text" label="Pais" name="shippingCountry" validators={['required']} value={form.shippingCountry} onChange={handleFormChange} />
           </div>
         </Paper>
         <Paper className={classes.paper}  variant="outlined" className={classes.container} square>
